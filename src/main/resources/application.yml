@@ -1,0 +1,31 @@
+# 配置端口
+server:
+  port: 8088
+  servlet:
+    session:
+      timeout: 21600
+
+spring:
+  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zero?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: zero
+    password: zero123456
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lingdeqin.zero.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+zero:
+  author: 'Zero'
+  title: '负二分之一自旋'
+  desc: '转益多师是吾师'
+  copyright: 'Copyright©2023 Zero'
+  record-no: '备案号'
+  github: 'https://github.com/lingdeqin'
+
+
