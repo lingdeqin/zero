@@ -17,18 +17,9 @@ public class MainController {
 
     @Autowired
     private ArticleService articleService;
-    private static Integer num = 0;
 
     @GetMapping("/config")
     public ResponseEntity<Result<ConfigDto>> config() {
-        try {
-            log.info("==config==begin=="+num);
-            Thread.sleep(4000);
-            num += 1;
-            log.info("==config==end=="+num);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
         return ResponseEntity.ok(Result.ok(new ConfigDto()));
     }
 
@@ -43,13 +34,5 @@ public class MainController {
         Article article = articleService.getById(id);
         return Result.ok(article);
     }
-
-    @GetMapping("/{config}")
-    public ResponseEntity<Result<ConfigDto>> test(@RequestBody String res) {
-        log.info("===test===");
-        log.info("===test==="+res);
-        return ResponseEntity.ok(Result.ok(new ConfigDto()));
-    }
-
 
 }

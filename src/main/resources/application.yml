@@ -1,17 +1,18 @@
-# 配置端口
 server:
-  port: 8088
+  # 配置端口
+  port: 12388
   servlet:
     session:
       timeout: 21600
+  address: 0.0.0.0
 
 spring:
   datasource:
 #    type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/zero?serverTimezone=Asia/Shanghai&allowMultiQueries=true
-    username: zero
-    password: zero123456
+    url: jdbc:mysql://${ZERO_MYSQL_HOST:localhost}:${ZERO_MYSQL_PORT:3306}/zero?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: ${ZERO_MYSQL_USER:zero}
+    password: ${ZERO_MYSQL_PWD:zero123456}
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
