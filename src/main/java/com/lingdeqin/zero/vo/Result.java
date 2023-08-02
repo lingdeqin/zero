@@ -21,6 +21,10 @@ public class Result<T> {
         return build(0, message, data);
     }
 
+    public static <T> Result<T> fail(String message) {
+        return build(1, message, null);
+    }
+
     private static <T> Result<T> build(Integer code, String message, T data) {
         Result<T> result = new Result<>();
         result.setData(data);

@@ -1,14 +1,12 @@
 package com.lingdeqin.zero.dto;
 
 import com.lingdeqin.zero.entity.Article;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author ling
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
