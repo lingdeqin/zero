@@ -8,14 +8,32 @@
     </select>
 
     <select id="listRoughly" resultType="com.lingdeqin.zero.dto.AritcleDto">
+
         select a.id,
-        (select group_concat(t.name) from article_tag at,tag t where at.tag_id = t.id and at.article_id = a.id) as tag,
+        (select group_concat(t.name) from article_tag at,tag t where at.tag_id = t.id and at.article_id = a.id) as tags,
         a.title,
         left(a.content, 300) as content,
         a.status,
         a.create_time,
         a.update_time
-        from article a
+        from article a, article_tag at, tag t
+        <where>
+            a.id = at.article_id
+            and t.id = at.tag_id
+            <if test="content != null">
+                <!-- Interceptor 让bind标签失效 -->
+                <!-- <bind name="contentLike" value="'%' + content + '%'" /> -->
+                <!-- and a.title like #{contentLike} or a.content like #{contentLike} -->
+                and (a.title like concat('%', #{content}, '%') or a.content like concat('%', #{content}, '%'))
+            </if>
+            <if test="tags != null and tags.size() != 0">
+                and at.tag_id in
+                <foreach collection="tags" index="index" item="item" open="(" separator="," close=")">
+                    ${item}
+                </foreach>
+            </if>
+        </where>
+        group by a.id, a.create_time
         order by a.create_time desc
     </select>
 

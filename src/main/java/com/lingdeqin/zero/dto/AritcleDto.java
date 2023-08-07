@@ -12,6 +12,6 @@ import lombok.*;
 @AllArgsConstructor
 public class AritcleDto extends Article {
 
-    private String tag;
+    private String tags;
 
 }

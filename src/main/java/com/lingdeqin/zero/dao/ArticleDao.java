@@ -5,6 +5,7 @@ import com.lingdeqin.zero.dto.AritcleDto;
 import com.lingdeqin.zero.dto.PageDto;
 import com.lingdeqin.zero.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +14,6 @@ import java.util.List;
 @Repository
 public interface ArticleDao extends BaseDao<Article> {
 
-    List<AritcleDto> listRoughly(PageDto pageDto);
+    List<AritcleDto> listRoughly(PageDto pageDto, @Param("content")String content, @Param("tags") List<String> tags);
 
 }

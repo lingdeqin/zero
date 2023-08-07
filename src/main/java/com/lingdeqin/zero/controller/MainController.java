@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -33,8 +35,8 @@ public class MainController {
     }
 
     @GetMapping("/articles")
-    public Result<PageResultDto> getArticles(Integer currentPage, Integer pageSize) {
-        PageResultDto<AritcleDto> pageResultDto = articleService.listRoughly(currentPage, pageSize);
+    public Result<PageResultDto> getArticles(Integer currentPage, Integer pageSize, String content, String tags) {
+        PageResultDto<AritcleDto> pageResultDto = articleService.listRoughly(currentPage, pageSize, content, tags != null ? Arrays.asList(tags.split(",")) : new ArrayList<>());
         return Result.ok(pageResultDto);
     }
 

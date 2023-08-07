@@ -28,9 +28,24 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageResultDto<AritcleDto> listRoughly(Integer currentPage, Integer pageSize) {
+        return listRoughly(currentPage, pageSize, null, null);
+    }
+
+    @Override
+    public PageResultDto<AritcleDto> listRoughly(Integer currentPage, Integer pageSize, String content) {
+        return listRoughly(currentPage, pageSize, content, null);
+    }
+
+    @Override
+    public PageResultDto<AritcleDto> listRoughly(Integer currentPage, Integer pageSize, List<String> tags) {
+        return listRoughly(currentPage, pageSize, null, tags);
+    }
+
+    @Override
+    public PageResultDto<AritcleDto> listRoughly(Integer currentPage, Integer pageSize, String content, List<String> tags) {
         PageDto pageDto = new PageDto(currentPage, pageSize);
-        List<AritcleDto> articleList = articleDao.listRoughly(pageDto);
-        return new PageResultDto<AritcleDto>(pageDto, articleList);
+        List<AritcleDto> articleList = articleDao.listRoughly(pageDto,content ,tags);
+        return new PageResultDto<>(pageDto, articleList);
     }
 
     @Override
